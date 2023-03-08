@@ -2,7 +2,8 @@
 
 body {
     font-family: "DM Sans", sans-serif;
-    margin: 0;
+    max-width: 1400px;
+    margin: 0 auto 2rem;
 }
 
 
@@ -52,7 +53,7 @@ h1 {
     object-fit: cover;
     width: 250px;
     height: 250px;
-    
+    overflow-clip-margin: unset;
 }
 
 .photographer_section__info > * {
@@ -76,4 +77,12 @@ h1 {
 .photographer_section__info > #price {    
     font-size: 9px;
     color: #757575;
+}
+
+@media screen and (max-width: 700px) {
+    .photographer_section {
+        grid-template-columns: 1fr;
+        gap: 70px;
+        margin-top: 0px;
+    }
 }
