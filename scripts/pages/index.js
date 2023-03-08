@@ -10,7 +10,7 @@ class Index {
     
     async main(){
         const photographersData = await this.photopraphersApi.getAll()
-        
+
         const Photographers = photographersData.map(photographerData => new Photographer(photographerData))
 
         Photographers.forEach(person => {
