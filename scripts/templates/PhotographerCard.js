@@ -5,8 +5,9 @@ export class PhotographerCard {
     }
     
     createCard() {
-        const $article = document.createElement('article');
-        $article.classList.add('photographer__article');
+        const $wrapper = document.createElement('a');
+        $wrapper.classList.add('photographer__article');
+        $wrapper.setAttribute('href', `./photographer.html?id=${this._photographer.id}`)
 
         const card = `
             <div class="photographer_section__img">
@@ -20,9 +21,9 @@ export class PhotographerCard {
             </div>
         `;
 
-        $article.innerHTML = card;
+        $wrapper.innerHTML = card;
         
-        return $article;
+        return $wrapper;
     }
 }
 
