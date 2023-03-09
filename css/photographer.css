@@ -6,6 +6,28 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.photographer-header__info > * {
+    margin: 0;
+}
+.photographer-header__info > #name {
+    color: #D3573C;
+    font-size: 64px;
+    font-weight: 100;
+}
+
+.photographer-header__info > #location {
+    color: #901C1C;
+    font-size: 24px;
+    margin: .5rem 0;
+}
+
+.photographer-header__info > #tagline {    
+    font-size: 18px;
+    color: #525252;
 }
 
 .contact_button {

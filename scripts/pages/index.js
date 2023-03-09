@@ -1,5 +1,5 @@
 import { FetchPhotograph } from "../api/FetchData.js";
-import { Photographer } from "../models/Photographer.js";
+import { PhotographerModel } from "../models/PhotographerModel.js";
 import { PhotographerCard } from "../templates/PhotographerCard.js";
 
 class Index {
@@ -11,7 +11,7 @@ class Index {
     async main(){
         const photographersData = await this.photopraphersApi.getAll()
 
-        const Photographers = photographersData.map(photographerData => new Photographer(photographerData))
+        const Photographers = photographersData.map(photographerData => new PhotographerModel(photographerData))
 
         Photographers.forEach(person => {
             const Template = new PhotographerCard(person)

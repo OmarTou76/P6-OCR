@@ -28,7 +28,7 @@ export class FetchPhotograph extends FetchData {
 
     async getOne(id){
         const allPhotograpers = await this.getAll()
-        const photographer = allPhotograpers.find(person => person.id === id)
+        const photographer = allPhotograpers.find(person => person.id === parseInt(id))
         return photographer
     }
 }
