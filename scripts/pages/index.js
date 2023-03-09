@@ -1,23 +1,24 @@
 import { FetchPhotograph } from "../api/FetchData.js";
-import { PhotographerModel } from "../models/PhotographerModel.js";
-import { PhotographerCard } from "../templates/PhotographerCard.js";
 
 class Index {
     constructor(){
+
         this.$photographersSection = document.querySelector(".photographer_section");
-        this.photopraphersApi = new FetchPhotograph("https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json")
+
+        this.photopraphersApi = new FetchPhotograph("../../data/photographers.json");
+        
     }
     
     async main(){
+
         const photographersData = await this.photopraphersApi.getAll()
 
-        const Photographers = photographersData.map(photographerData => new PhotographerModel(photographerData))
-
-        Photographers.forEach(person => {
-            const Template = new PhotographerCard(person)
-            this.$photographersSection.appendChild(Template.createCard())
+        photographersData.forEach(person => {
+            const template = person.createCard()
+            this.$photographersSection.appendChild(template)
         })
     }
+
 }
 
 const app = new Index()

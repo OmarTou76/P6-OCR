@@ -1,23 +1,27 @@
-import { FetchPhotograph } from "../api/FetchData.js";
-import { PhotographerModel } from "../models/PhotographerModel.js";
-import { PhotographerHeader } from "../templates/PhotographerHeader.js";
+import { FetchPhotograph, FetchMedia } from "../api/FetchData.js";
 
 class Photographer {
     constructor(){
 
         this.photographerId = new URLSearchParams(document.location.search).get('id')
+        
         this.$mainWrapper = document.querySelector('main')
 
-        this.photopraphersApi = new FetchPhotograph("https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json")
+        this.photopraphersApi = new FetchPhotograph("../../data/photographers.json")
+        this.mediasApi = new FetchMedia("../../data/photographers.json")
+
     }
 
     async main (){
 
         const photographerData = await this.photopraphersApi.getOne(this.photographerId)
-        const Photographer = new PhotographerModel(photographerData)
 
-        const Template = new PhotographerHeader(Photographer)
-        this.$mainWrapper.appendChild(Template.createCard())
+        const mediasData = await this.mediasApi.getAllByPhotographerId(this.photographerId)
+        console.log(photographerData)
+
+        const headerTemplate = photographerData.createHeader()
+        this.$mainWrapper.appendChild(headerTemplate)
+
 
     }
 }

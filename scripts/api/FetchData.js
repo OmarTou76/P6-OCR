@@ -1,7 +1,9 @@
+import { PhotographerModel } from "../models/PhotographerModel.js";
+import { MediaModel } from "../models/MediaModel.js";
+
 class FetchData {
     constructor(url){
         this._url = url
-
     }
 
     async get(){
@@ -10,7 +12,7 @@ class FetchData {
             const response = await data.json()
             return response
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -23,15 +25,27 @@ export class FetchPhotograph extends FetchData {
 
     async getAll(){
         const data = await this.get()
-        return data.photographers
+        return data.photographers.map(photographerData => new PhotographerModel(photographerData))
     }
 
     async getOne(id){
         const allPhotograpers = await this.getAll()
         const photographer = allPhotograpers.find(person => person.id === parseInt(id))
-        return photographer
+
+        return new PhotographerModel(photographer)
     }
 }
 
-/* const data = new FetchPhotograph('https://raw.githubusercontent.com/OpenClassrooms-Student-Center/Front-End-Fisheye/main/data/photographers.json')
-data.fetchOne(195).then(d => console.log(d)) */
+export class FetchMedia extends FetchData {
+    constructor(url){
+        super(url)
+    }
+
+    async getAllByPhotographerId(id){
+
+        const data = await this.get()
+        const medias = data.media.filter(media => media.photographerId === parseInt(id))
+
+        return medias.map(media => MediaModel.mediaFactory(media))
+    }
+}
