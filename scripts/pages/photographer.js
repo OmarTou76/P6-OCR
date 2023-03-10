@@ -1,27 +1,32 @@
 import { FetchPhotograph, FetchMedia } from "../api/FetchData.js";
 
 class Photographer {
-    constructor(){
+    constructor() {
 
         this.photographerId = new URLSearchParams(document.location.search).get('id')
-        
+
         this.$mainWrapper = document.querySelector('main')
+        this.$mediaWrapper = document.createElement('div')
+        this.$mediaWrapper.classList.add('media__wrapper')
 
         this.photopraphersApi = new FetchPhotograph("../../data/photographers.json")
         this.mediasApi = new FetchMedia("../../data/photographers.json")
 
     }
 
-    async main (){
+    async main() {
 
         const photographerData = await this.photopraphersApi.getOne(this.photographerId)
+        const headerTemplate = photographerData.createHeader()
 
         const mediasData = await this.mediasApi.getAllByPhotographerId(this.photographerId)
-        console.log(photographerData)
+        mediasData.forEach(media => {
+            const template = media.createMediaCard()
+            this.$mediaWrapper.appendChild(template)
+        })
 
-        const headerTemplate = photographerData.createHeader()
         this.$mainWrapper.appendChild(headerTemplate)
-
+        this.$mainWrapper.appendChild(this.$mediaWrapper)
 
     }
 }

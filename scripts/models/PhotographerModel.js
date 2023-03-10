@@ -8,7 +8,6 @@ export class PhotographerModel {
         const $wrapper = document.createElement('div');
         $wrapper.classList.add('photograph-header');
 
-        console.log(this.portrait)
         const card = `
         <div class="photographer-header__info">
             <h2 id="name">${this.name}</h2>
@@ -27,7 +26,7 @@ export class PhotographerModel {
     }
 
     createCard() {
-        
+
         const $wrapper = document.createElement('a');
         $wrapper.classList.add('photographer__article');
         $wrapper.setAttribute('href', `./photographer.html?id=${this.id}`)
