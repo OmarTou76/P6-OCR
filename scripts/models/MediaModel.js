@@ -13,12 +13,38 @@ export class MediaModel {
         this._data = data
     }
 
-    onLike() {
-        this._data.like++
+    handleLikesButton() {
+
+        const context = this
+
+        this.$wrapper.querySelector('#likes')
+            .addEventListener('click', function () {
+
+                if (this.classList.contains('icon_liked')) {
+                    context.onDislike(this)
+                } else {
+                    context.onLike(this)
+                }
+
+                const likesCount = context.$wrapper.querySelector('#likes_count')
+
+                likesCount.innerHTML = context._data.likes
+            })
+
     }
 
-    onDislike() {
-        this._data.like--
+    onLike(element) {
+        element.classList.remove('icon_disliked')
+        element.classList.add('icon_liked')
+
+        this._data.likes++
+    }
+
+    onDislike(element) {
+        element.classList.remove('icon_liked')
+        element.classList.add('icon_disliked')
+
+        this._data.likes--
     }
 
     get title() {
@@ -50,31 +76,35 @@ export class MediaModel {
 export class ImageModel extends MediaModel {
     constructor(data) {
         super(data)
+
     }
 
     createMediaCard() {
-        const $wrapper = document.createElement('div');
-        $wrapper.classList.add('media__article');
+        this.$wrapper = document.createElement('div');
+        this.$wrapper.classList.add('media__article');
+
         const card = `
             <div class="media__img">
                 <img src="./assets/medias/${this.photographerId}/${this.image}" alt="${this.title}" />
             </div>
             <div class="media__info">
-                <div id="name">
+                <div id="title">
                     ${this.title}
                 </div>
                 <div>
-                    <span>${this.likes}</span>
-                    <i class="fa-sharp fa-solid fa-heart"></i>
+                    <span id="likes_count">${this.likes}</span>
+                    <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
         `;
 
-        $wrapper.innerHTML = card;
+        this.$wrapper.innerHTML = card;
+        this.handleLikesButton()
 
-
-        return $wrapper;
+        return this.$wrapper;
     }
+
+
 
     get image() {
         return this._data.image
@@ -87,28 +117,29 @@ export class VideoModel extends MediaModel {
     }
 
     createMediaCard() {
-        const $wrapper = document.createElement('div');
-        $wrapper.classList.add('media__article');
+        this.$wrapper = document.createElement('div');
+        this.$wrapper.classList.add('media__article');
 
         const card = `
             <div class="media__img">
-                <img height="50" width="50" src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.name}" />
+                <video src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.title}" />
             </div>
             <div class="media__info">
-                <div id="name">
-                    ${this.name}
+                <div id="title">
+                    ${this.title}
                 </div>
                 <div>
-                    <span>${this.like}</span>
-                    <i class="fa-sharp fa-solid fa-heart"></i>
+                    <span id="likes_count">${this.likes}</span>
+                    <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
         `;
 
-        $wrapper.innerHTML = card;
+        this.$wrapper.innerHTML = card;
+        this.handleLikesButton()
 
 
-        return $wrapper;
+        return this.$wrapper;
     }
 
     get video() {
