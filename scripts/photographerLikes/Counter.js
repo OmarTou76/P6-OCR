@@ -8,10 +8,9 @@ export class PhotographerLikesCounter {
 
     getInitialCount(data) {
         this._data = data
-        this._count = this._data.reduce((accumulator, current) => accumulator += current.likes, 0)
-
         this._$likesCount = document.querySelector('.likes_count')
-        this._$likesCount.innerHTML = this._count
+
+        this.update()
     }
 
     update() {
