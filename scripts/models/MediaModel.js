@@ -27,7 +27,7 @@ export class MediaModel {
                 }
 
                 const likesCount = context.$wrapper.querySelector('#likes_count')
-
+                context.likesSubject.notify()
                 likesCount.innerHTML = context._data.likes
             })
 
@@ -37,7 +37,7 @@ export class MediaModel {
         element.classList.remove('icon_disliked')
         element.classList.add('icon_liked')
 
-        this.likesSubject.notify("INC")
+        /* this.likesSubject.notify("INC") */
         this._data.likes++
     }
 
@@ -45,7 +45,7 @@ export class MediaModel {
         element.classList.remove('icon_liked')
         element.classList.add('icon_disliked')
 
-        this.likesSubject.notify("DEC")
+        /* this.likesSubject.notify("DEC") */
         this._data.likes--
     }
 
@@ -98,7 +98,6 @@ export class ImageModel extends MediaModel {
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
-            
         `;
 
         this.$wrapper.innerHTML = card;

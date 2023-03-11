@@ -3,25 +3,20 @@ export class PhotographerLikesCounter {
     constructor() {
         this._$likesCount = null
         this._count = 0
+        this._data = []
     }
 
     getInitialCount(data) {
-        const initialCount = data.reduce((accumulator, current) => accumulator += current.likes, 0)
+        this._data = data
+        this._count = this._data.reduce((accumulator, current) => accumulator += current.likes, 0)
 
         this._$likesCount = document.querySelector('.likes_count')
-        this._$likesCount.innerHTML = initialCount
-
-        this._count = initialCount
+        this._$likesCount.innerHTML = this._count
     }
 
-    update(action) {
-        if (action === 'INC') {
-            this._count++
-        } else if (action === 'DEC') {
-            this._count--
-        } else {
-            throw "Unknow action"
-        }
+    update() {
+        this._count = this._data.reduce((accumulator, current) => accumulator += current.likes, 0)
+
         this._$likesCount.innerHTML = this._count
     }
 }
