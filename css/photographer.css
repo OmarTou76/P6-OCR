@@ -57,6 +57,7 @@ main {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
 }
 
 .media__img > img  {
@@ -74,6 +75,12 @@ main {
     top: calc(50% - 2rem);
     font-size: 4rem;
     color: #FAFAFA;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.media__img:hover .player-icon{
+    opacity: 1;
 }
 
 .media__info {
