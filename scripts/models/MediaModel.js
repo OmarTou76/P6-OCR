@@ -98,6 +98,7 @@ export class ImageModel extends MediaModel {
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
+            
         `;
 
         this.$wrapper.innerHTML = card;
@@ -125,7 +126,8 @@ export class VideoModel extends MediaModel {
 
         const card = `
             <div class="media__img">
-                <video src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.title}" />
+                <video src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.title}" /></video>
+                <i class="fas fa-play player-icon"></i>
             </div>
             <div class="media__info">
                 <div id="title">
@@ -136,6 +138,7 @@ export class VideoModel extends MediaModel {
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
+
         `;
 
         this.$wrapper.innerHTML = card;
