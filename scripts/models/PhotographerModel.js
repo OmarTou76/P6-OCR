@@ -3,8 +3,25 @@ export class PhotographerModel {
         this._data = data
     }
 
+    displayLikesAndPrices() {
+        const $wrapper = document.createElement('div')
+        $wrapper.classList.add("about__photographer")
+
+        const card = `
+                <div class="photographer__likes">
+                    <span class="likes_count"></span>
+                    <i class="fas fa-heart icon_liked"></i>
+                </div>
+                <span class="photographer__price">${this.price}€ / jour</span>
+            `;
+
+        $wrapper.innerHTML = card
+
+        return $wrapper
+    }
+
     createHeader() {
-        
+
         const $wrapper = document.createElement('div');
         $wrapper.classList.add('photograph-header');
 
@@ -21,7 +38,7 @@ export class PhotographerModel {
         `;
 
         $wrapper.innerHTML = card;
-        
+
         return $wrapper;
     }
 

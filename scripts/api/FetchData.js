@@ -2,11 +2,11 @@ import { PhotographerModel } from "../models/PhotographerModel.js";
 import { MediaModel } from "../models/MediaModel.js";
 
 class FetchData {
-    constructor(url){
+    constructor(url) {
         this._url = url
     }
 
-    async get(){
+    async get() {
         try {
             const data = await fetch(this._url)
             const response = await data.json()
@@ -19,16 +19,16 @@ class FetchData {
 }
 
 export class FetchPhotograph extends FetchData {
-    constructor(url){
+    constructor(url) {
         super(url)
     }
 
-    async getAll(){
+    async getAll() {
         const data = await this.get()
         return data.photographers.map(photographerData => new PhotographerModel(photographerData))
     }
 
-    async getOne(id){
+    async getOne(id) {
         const allPhotograpers = await this.getAll()
         const photographer = allPhotograpers.find(person => person.id === parseInt(id))
 
@@ -37,15 +37,17 @@ export class FetchPhotograph extends FetchData {
 }
 
 export class FetchMedia extends FetchData {
-    constructor(url){
+    constructor(url) {
         super(url)
     }
 
-    async getAllByPhotographerId(id){
+    async getAllByPhotographerId(id, likesSubject, likesCounter) {
 
         const data = await this.get()
         const medias = data.media.filter(media => media.photographerId === parseInt(id))
 
-        return medias.map(media => MediaModel.mediaFactory(media))
+        likesCounter.getInitialCount(medias)
+
+        return medias.map(media => MediaModel.mediaFactory(media, likesSubject))
     }
 }

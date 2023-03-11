@@ -72,7 +72,14 @@ main {
     font-size: 24px;
 }
 
-.media__info i {
+.media__likes{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-left: 1rem;
+}
+
+.media__likes i {
     cursor: pointer;
 }
 
@@ -85,9 +92,22 @@ main {
 
 .icon_liked {
     cursor: pointer;
-
 }
 
+.about__photographer{
+    position: sticky;
+    bottom: 0px;
+    left: 100%;
+    height: 3rem;
+    width: 15rem;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: black;
+    background:  #DB8876;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
 .contact_button {
     font-size: 20px;

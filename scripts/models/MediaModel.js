@@ -1,11 +1,11 @@
 
 export class MediaModel {
 
-    static mediaFactory(data) {
+    static mediaFactory(data, likesSubject) {
         if (data.image) {
-            return new ImageModel(data)
+            return new ImageModel(data, likesSubject)
         } else if (data.video) {
-            return new VideoModel(data)
+            return new VideoModel(data, likesSubject)
         }
     }
 
@@ -37,6 +37,7 @@ export class MediaModel {
         element.classList.remove('icon_disliked')
         element.classList.add('icon_liked')
 
+        this.likesSubject.notify("INC")
         this._data.likes++
     }
 
@@ -44,6 +45,7 @@ export class MediaModel {
         element.classList.remove('icon_liked')
         element.classList.add('icon_disliked')
 
+        this.likesSubject.notify("DEC")
         this._data.likes--
     }
 
@@ -74,9 +76,9 @@ export class MediaModel {
 
 
 export class ImageModel extends MediaModel {
-    constructor(data) {
+    constructor(data, likesSubject) {
         super(data)
-
+        this.likesSubject = likesSubject
     }
 
     createMediaCard() {
@@ -91,7 +93,7 @@ export class ImageModel extends MediaModel {
                 <div id="title">
                     ${this.title}
                 </div>
-                <div>
+                <div class="media__likes">
                     <span id="likes_count">${this.likes}</span>
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
@@ -112,8 +114,9 @@ export class ImageModel extends MediaModel {
 }
 
 export class VideoModel extends MediaModel {
-    constructor(data) {
+    constructor(data, likesSubject) {
         super(data)
+        this.likesSubject = likesSubject
     }
 
     createMediaCard() {
@@ -128,7 +131,7 @@ export class VideoModel extends MediaModel {
                 <div id="title">
                     ${this.title}
                 </div>
-                <div>
+                <div class="media__likes">
                     <span id="likes_count">${this.likes}</span>
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
