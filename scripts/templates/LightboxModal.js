@@ -6,16 +6,23 @@ export default class LightboxModal {
     }
 
     nextMedia() {
-        if (this.currentMedia + 1 >= this.medias.length) return
+        if (this.currentMedia === this.medias.length - 1) {
+            this.currentMedia = 0
+        } else {
+            this.currentMedia++
+        }
 
-        this.currentMedia++
         this.$wrapper.remove()
         this.createLightbox()
 
     }
 
     previousMedia() {
-        if (this.currentMedia - 1 < 0) return
+        if (this.currentMedia === 0) {
+            this.currentMedia = this.medias.length
+        } else {
+            this.currentMedia--
+        }
 
         this.currentMedia--
         this.$wrapper.remove()
