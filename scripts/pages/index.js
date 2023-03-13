@@ -5,7 +5,7 @@ class Index {
 
         this.$photographersSection = document.querySelector(".photographer_section");
 
-        this.photopraphersApi = new FetchPhotograph("https://raw.githubusercontent.com/OmarTou76/P6-OCR/main/data/photographers.json");
+        this.photopraphersApi = new FetchPhotograph("./data/photographers.json");
 
     }
 
