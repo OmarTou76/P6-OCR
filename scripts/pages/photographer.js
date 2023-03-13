@@ -14,8 +14,8 @@ class Photographer {
         this.$mediaWrapper.classList.add('media__wrapper')
 
 
-        this.photopraphersApi = new FetchPhotograph("../../data/photographers.json")
-        this.mediasApi = new FetchMedia("../../data/photographers.json")
+        this.photopraphersApi = new FetchPhotograph("./data/photographers.json")
+        this.mediasApi = new FetchMedia("./data/photographers.json")
 
         // Observer qui gère le nombre total de likes
         this.likesSubject = new PhotographerLikesSubject()
