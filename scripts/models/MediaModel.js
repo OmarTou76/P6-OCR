@@ -1,17 +1,18 @@
 
 export class MediaModel {
 
-    static mediaFactory(data, likesSubject) {
+    static mediaFactory(data, likesSubject, lighboxModal) {
         if (data.image) {
-            return new ImageModel(data, likesSubject)
+            return new ImageModel(data, likesSubject, lighboxModal)
         } else if (data.video) {
-            return new VideoModel(data, likesSubject)
+            return new VideoModel(data, likesSubject, lighboxModal)
         }
     }
 
     constructor(data) {
         this._data = data
     }
+
 
     handleLikesButton() {
 
@@ -37,7 +38,6 @@ export class MediaModel {
         element.classList.remove('icon_disliked')
         element.classList.add('icon_liked')
 
-        /* this.likesSubject.notify("INC") */
         this._data.likes++
     }
 
@@ -45,7 +45,6 @@ export class MediaModel {
         element.classList.remove('icon_liked')
         element.classList.add('icon_disliked')
 
-        /* this.likesSubject.notify("DEC") */
         this._data.likes--
     }
 
@@ -76,9 +75,19 @@ export class MediaModel {
 
 
 export class ImageModel extends MediaModel {
-    constructor(data, likesSubject) {
+    constructor(data, likesSubject, lightboxModal) {
         super(data)
         this.likesSubject = likesSubject
+        this.lightboxModal = lightboxModal
+    }
+
+    displayLightbox() {
+        const context = this
+
+        this.$wrapper.querySelector('.media__img')
+            .addEventListener('click', () => {
+                context.lightboxModal.render(context.id)
+            })
     }
 
     createMediaCard() {
@@ -102,11 +111,10 @@ export class ImageModel extends MediaModel {
 
         this.$wrapper.innerHTML = card;
         this.handleLikesButton()
+        this.displayLightbox()
 
         return this.$wrapper;
     }
-
-
 
     get image() {
         return this._data.image
@@ -114,9 +122,19 @@ export class ImageModel extends MediaModel {
 }
 
 export class VideoModel extends MediaModel {
-    constructor(data, likesSubject) {
+    constructor(data, likesSubject, lightboxModal) {
         super(data)
         this.likesSubject = likesSubject
+        this.lightboxModal = lightboxModal
+    }
+
+    displayLightbox() {
+        const context = this
+
+        this.$wrapper.querySelector('.media__img')
+            .addEventListener('click', () => {
+                context.lightboxModal.render(context.id)
+            })
     }
 
     createMediaCard() {
@@ -142,7 +160,7 @@ export class VideoModel extends MediaModel {
 
         this.$wrapper.innerHTML = card;
         this.handleLikesButton()
-
+        this.displayLightbox()
 
         return this.$wrapper;
     }

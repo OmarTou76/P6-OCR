@@ -4,18 +4,20 @@ import { PhotographerLikesSubject } from "../photographerLikes/Subject.js";
 
 
 class Photographer {
-    constructor() {
 
+    constructor() {
         this.photographerId = new URLSearchParams(document.location.search).get('id')
 
         this.$mainWrapper = document.querySelector('main')
+
         this.$mediaWrapper = document.createElement('div')
         this.$mediaWrapper.classList.add('media__wrapper')
+
 
         this.photopraphersApi = new FetchPhotograph("../../data/photographers.json")
         this.mediasApi = new FetchMedia("../../data/photographers.json")
 
-        // Gère le nombre de likes total
+        // Observer qui gère le nombre total de likes
         this.likesSubject = new PhotographerLikesSubject()
         this.likesCounter = new PhotographerLikesCounter()
         this.likesSubject.subscribe(this.likesCounter)

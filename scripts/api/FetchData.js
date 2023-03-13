@@ -1,5 +1,6 @@
 import { PhotographerModel } from "../models/PhotographerModel.js";
 import { MediaModel } from "../models/MediaModel.js";
+import LightboxModal from "../templates/LightboxModal.js";
 
 class FetchData {
     constructor(url) {
@@ -39,15 +40,18 @@ export class FetchPhotograph extends FetchData {
 export class FetchMedia extends FetchData {
     constructor(url) {
         super(url)
+        this._data = []
     }
 
     async getAllByPhotographerId(id, likesSubject, likesCounter) {
+        const allMedias = await this.get()
 
-        const data = await this.get()
-        const medias = data.media.filter(media => media.photographerId === parseInt(id))
+        this._data = allMedias.media.filter(media => media.photographerId === parseInt(id))
 
-        likesCounter.getInitialCount(medias)
+        const lightboxModal = new LightboxModal(this._data)
 
-        return medias.map(media => MediaModel.mediaFactory(media, likesSubject))
+        likesCounter.getInitialCount(this._data)
+
+        return this._data.map(media => MediaModel.mediaFactory(media, likesSubject, lightboxModal))
     }
 }
