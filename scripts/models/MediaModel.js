@@ -28,8 +28,9 @@ export class MediaModel {
                 }
 
                 const likesCount = context.$wrapper.querySelector('#likes_count')
-                context.likesSubject.notify()
                 likesCount.innerHTML = context._data.likes
+
+                context.likesSubject.notify()
             })
 
     }
