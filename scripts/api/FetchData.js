@@ -1,6 +1,8 @@
 import { PhotographerModel } from "../models/PhotographerModel.js";
 import { MediaModel } from "../models/MediaModel.js";
-import LightboxModal from "../templates/LightboxModal.js";
+import { PhotographerLikesCounter } from "../photographerLikes/Counter.js";
+import { PhotographerLikesSubject } from "../photographerLikes/Subject.js";
+
 
 class FetchData {
     constructor(url) {
@@ -41,17 +43,20 @@ export class FetchMedia extends FetchData {
     constructor(url) {
         super(url)
         this._data = []
+        this.likesSubject = new PhotographerLikesSubject()
+        this.likesCounter = new PhotographerLikesCounter()
+        this.likesSubject.subscribe(this.likesCounter)
     }
 
-    async getAllByPhotographerId(id, likesSubject, likesCounter) {
+    async getAllByPhotographerId(id, lightboxModal) {
         const allMedias = await this.get()
 
-        this._data = allMedias.media.filter(media => media.photographerId === parseInt(id))
+        this._data = allMedias.media.filter(media => media.photographerId === parseInt(id)).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
-        const lightboxModal = new LightboxModal(this._data)
+        lightboxModal.setMedias(this._data)
 
-        likesCounter.getInitialCount(this._data)
+        this.likesCounter.getInitialCount(this._data)
 
-        return this._data.map(media => MediaModel.mediaFactory(media, likesSubject, lightboxModal))
+        return this._data.map(media => MediaModel.mediaFactory(media, this.likesSubject, lightboxModal))
     }
 }

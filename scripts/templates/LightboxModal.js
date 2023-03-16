@@ -1,7 +1,6 @@
 export default class LightboxModal {
 
-    constructor(medias) {
-        this.medias = medias
+    constructor() {
         this.currentMedia = 0
     }
 
@@ -69,34 +68,12 @@ export default class LightboxModal {
 
     }
 
+    setMedias(medias) {
+        this.medias = medias
+    }
+
     render(currentMedia) {
         this.currentMedia = this.medias.findIndex((medias) => medias.id === currentMedia)
         this.createLightbox()
     }
 }
-
-/* displayModal() {
-    const context = this
-
-    this.$wrapper.querySelector('.media__img')
-        .addEventListener('click', () => {
-
-            context.$lightBox.classList.add('lightbox__modal')
-
-
-            const player = `
-                <div class="player__wrapper">
-                    <i class="fas fa-chevron-left arrow arrow_back"></i>
-                    <i class="fas fa-chevron-right arrow"></i>
-                    <i class="fas fa-times close_btn"></i>
-                        <img src="./assets/medias/${this.photographerId}/${this.image}" alt="${this.title}" class="media__full" />
-                </div>
-            `
-
-            context.$lightBox.innerHTML = player
-
-            document.querySelector('main').appendChild(context.$lightBox)
-            context.onCloseModal()
-
-        })
-} */
