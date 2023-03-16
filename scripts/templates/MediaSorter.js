@@ -14,47 +14,27 @@ export class MediaSorter {
 
         this.clearMedias()
 
+        let sortedData = []
+
         if (orderBy !== "") {
 
             if (orderBy === "POPULAR") {
 
-                const sortedData = [...this._data].sort((a, b) => b.likes - a.likes)
-                this.lightboModal.setMedias(sortedData)
-
-                sortedData.forEach(media => {
-                    const template = media.createMediaCard()
-                    this.$mediasWrapper.appendChild(template)
-                })
-
-            } else if (orderBy === "DATE") {
-
-                const sortedData = [...this._data].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-                this.lightboModal.setMedias(sortedData)
-                console.log(sortedData, this._data)
-                sortedData.forEach(media => {
-                    const template = media.createMediaCard()
-                    this.$mediasWrapper.appendChild(template)
-                })
+                sortedData = [...this._data].sort((a, b) => b.likes - a.likes)
 
             } else if (orderBy === "TITLE") {
 
-                const sortedData = [...this._data].sort((a, b) => a.title.toUpperCase().charCodeAt(0) - b.title.toUpperCase().charCodeAt(0))
-                this.lightboModal.setMedias(sortedData)
-
-                sortedData.forEach(media => {
-                    const template = media.createMediaCard()
-                    this.$mediasWrapper.appendChild(template)
-                })
+                sortedData = [...this._data].sort((a, b) => a.title.toUpperCase().charCodeAt(0) - b.title.toUpperCase().charCodeAt(0))
+            } else {
+                sortedData = this._data
             }
-        } else {
 
-            this.lightboModal.setMedias(this._data)
+            this.lightboModal.setMedias(sortedData)
 
-            this._data.forEach(media => {
+            sortedData.forEach(media => {
                 const template = media.createMediaCard()
                 this.$mediasWrapper.appendChild(template)
             })
-
         }
     }
 
