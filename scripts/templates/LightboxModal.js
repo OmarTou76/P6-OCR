@@ -56,9 +56,12 @@ export default class LightboxModal {
                 <i class="fas fa-chevron-left arrow arrow_back"></i>
                 <i class="fas fa-chevron-right arrow"></i>
                 <i class="fas fa-times close_btn"></i> 
-                ${this.medias[this.currentMedia].image ?
+                <div class="player__wrapper__media">
+                    ${this.medias[this.currentMedia].image ?
                 `<img src="./assets/medias/${this.medias[this.currentMedia].photographerId}/${this.medias[this.currentMedia].image}" alt="${this.medias[this.currentMedia].title}" class="media__full" />` :
                 `<video controls autoplay src="./assets/medias/${this.medias[this.currentMedia].photographerId}/${this.medias[this.currentMedia].video}" alt="${this.medias[this.currentMedia].title}" class="media__full"></video>`}
+                    <p>${this.medias[this.currentMedia].title}</p>
+                </div>
             </div>`
 
         this.$wrapper.innerHTML = content
