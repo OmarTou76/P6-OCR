@@ -1,11 +1,11 @@
 
 export class MediaModel {
 
-    static mediaFactory(data, likesSubject, lighboxModal) {
+    static mediaFactory(data, likesCounter, lighboxModal) {
         if (data.image) {
-            return new ImageModel(data, likesSubject, lighboxModal)
+            return new ImageModel(data, likesCounter, lighboxModal)
         } else if (data.video) {
-            return new VideoModel(data, likesSubject, lighboxModal)
+            return new VideoModel(data, likesCounter, lighboxModal)
         }
     }
 
@@ -30,7 +30,7 @@ export class MediaModel {
                 const likesCount = context.$wrapper.querySelector('#likes_count')
                 likesCount.innerHTML = context._data.likes
 
-                context.likesSubject.notify()
+                context.likesCounter.update()
             })
 
     }
@@ -76,9 +76,9 @@ export class MediaModel {
 
 
 export class ImageModel extends MediaModel {
-    constructor(data, likesSubject, lightboxModal) {
+    constructor(data, likesCounter, lightboxModal) {
         super(data)
-        this.likesSubject = likesSubject
+        this.likesCounter = likesCounter
         this.lightboxModal = lightboxModal
     }
 
@@ -123,9 +123,9 @@ export class ImageModel extends MediaModel {
 }
 
 export class VideoModel extends MediaModel {
-    constructor(data, likesSubject, lightboxModal) {
+    constructor(data, likesCounter, lightboxModal) {
         super(data)
-        this.likesSubject = likesSubject
+        this.likesCounter = likesCounter
         this.lightboxModal = lightboxModal
     }
 

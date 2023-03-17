@@ -54,7 +54,7 @@ export class MediaSorter {
     render() {
         const sorterForm = `
         <form action="#" class="sorter-form">
-            <label for="sorter-select">Triez par date de sortie : </label>
+            <label for="sorter-select">Triez par : </label>
             <select name="sorter-select" id="sorter-select">
                 <option value="DATE">Date</option>
                 <option value="POPULAR">Popularité</option>

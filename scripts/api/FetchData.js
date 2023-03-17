@@ -1,7 +1,6 @@
 import { PhotographerModel } from "../models/PhotographerModel.js";
 import { MediaModel } from "../models/MediaModel.js";
 import { PhotographerLikesCounter } from "../photographerLikes/Counter.js";
-import { PhotographerLikesSubject } from "../photographerLikes/Subject.js";
 
 
 class FetchData {
@@ -43,9 +42,8 @@ export class FetchMedia extends FetchData {
     constructor(url) {
         super(url)
         this._data = []
-        this.likesSubject = new PhotographerLikesSubject()
+
         this.likesCounter = new PhotographerLikesCounter()
-        this.likesSubject.subscribe(this.likesCounter)
     }
 
     async getAllByPhotographerId(id, lightboxModal) {
@@ -57,6 +55,6 @@ export class FetchMedia extends FetchData {
 
         this.likesCounter.getInitialCount(this._data)
 
-        return this._data.map(media => MediaModel.mediaFactory(media, this.likesSubject, lightboxModal))
+        return this._data.map(media => MediaModel.mediaFactory(media, this.likesCounter, lightboxModal))
     }
 }
