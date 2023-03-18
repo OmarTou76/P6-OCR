@@ -8,6 +8,75 @@ main {
     position: relative;
 }
 
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.modal form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+.modal form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+.modal form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -35,11 +104,84 @@ main {
     color: #525252;
 }
 
+.sorter__wrapper {
+    display: flex;
+    gap: 25px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.sorter__dropdown {
+    min-width: 170px;
+    position: relative;
+    font-size: 18px;
+}
+
+.sorter__dropdown * {
+    box-sizing: border-box;
+}
+
+.sorter__dropdown .select {
+    background: #901C1C;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 1em;
+    transition: background-color 0.3s;
+}
+
+.sorter__dropdown .open-icon {
+    transform: rotate(270deg);
+    transition: 0.2s;
+}
+
+
+.sorter__dropdown .open-icon-rotate {
+    transform: rotate(90deg);
+}
+
+.sorter__dropdown .menu {
+    list-style: none;
+    padding: 0.2em .6em;
+    background: #901C1C;
+    background: #901C1C;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #fff;
+    position: absolute;
+    top: 1.7rem;
+    left: 0; /* 50% */
+    width: 100%;
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+.sorter__dropdown .menu li {
+    padding: 0.5em 0.3em;
+    margin: 0.5em 0;
+    cursor: pointer;
+    border-top: 1px solid white;
+    background: #901C1C;
+    transition: 0.3s;
+}
+/* .menu li:hover {
+    background: #c92929;
+} */
+
+.sorter__dropdown .menu-open {
+    display: block;
+    opacity: 1;
+}
+
 .media__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
-    margin-top: 100px;
+    margin: 30px 0;
 }
 
 .media__article{
@@ -131,80 +273,13 @@ main {
     justify-content: space-around;
 }
 
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-}
-
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-}
-
 .lightbox__modal{
     position: fixed;
     height: 100vh;
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #fafafabd;
+    background-color: #fafafaf0;
     display: flex;
     align-items: center;
     justify-content: center;
