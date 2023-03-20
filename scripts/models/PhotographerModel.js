@@ -1,6 +1,11 @@
+import { ModalForm } from "../templates/ModalForm.js";
+
 export class PhotographerModel {
     constructor(data) {
         this._data = data
+        this.modalForm = new ModalForm(this.name)
+        this.$headerWrapper = document.createElement('div')
+        this.$headerWrapper.classList.add('photograph-header');
     }
 
     displayLikesAndPrices() {
@@ -20,10 +25,13 @@ export class PhotographerModel {
         return $wrapper
     }
 
-    createHeader() {
+    openFormModal() {
+        this.$headerWrapper.querySelector('.contact_button')
+            .addEventListener('click', () => this.modalForm.createModal())
+    }
 
-        const $wrapper = document.createElement('div');
-        $wrapper.classList.add('photograph-header');
+
+    createHeader() {
 
         const card = `
         <div class="photographer-header__info">
@@ -31,15 +39,16 @@ export class PhotographerModel {
             <p id="location">${this.city}, ${this.country}</p>
             <p id="tagline">${this.tagline}</p>
         </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-            <div class="photographer_section__img">
-                <img src="./assets/photographers/${this.portrait}" alt="${this.name}"/>
-            </div>
+        <button class="contact_button">Contactez-moi</button>
+        <div class="photographer_section__img">
+            <img src="./assets/photographers/${this.portrait}" alt="${this.name}"/>
+        </div>
         `;
 
-        $wrapper.innerHTML = card;
+        this.$headerWrapper.innerHTML = card;
+        this.openFormModal()
 
-        return $wrapper;
+        return this.$headerWrapper;
     }
 
     createCard() {
