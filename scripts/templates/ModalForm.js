@@ -1,3 +1,5 @@
+import { HandleForm } from "../FormController/HandleForm.js"
+
 export class ModalForm {
 
     constructor(name) {
@@ -10,18 +12,26 @@ export class ModalForm {
     }
 
     closeModal() {
-        this.$modal.querySelector('#closeModal')
+        this.$modal.querySelector('.closeModal')
             .addEventListener('click', () => {
                 this.$wrapper.remove()
             })
     }
 
     onSubmit() {
-        this.$modal.querySelector('#contactForm')
-            .addEventListener('submit', (e) => {
-                e.preventDefault()
+        new HandleForm("contactForm", this.displayValidation.bind(this))
+    }
 
-            })
+    displayValidation() {
+        this.$modal.innerHTML = `
+            <div class="modal__header">
+                <i class="fas fa-times closeModal"></i> 
+            </div>
+            <div class="modal__validation">
+                <p>Votre message à bien été envoyé a ${this.name}.</p>
+            </div>
+        `
+        this.closeModal()
     }
 
     createModal() {
@@ -29,22 +39,22 @@ export class ModalForm {
             <div class="modal__header">
                 <h2>Contactez-moi</h2>
                 <h3>${this.name}</h3>
-                <img src="./assets/icons/close.svg" id="closeModal" />
+                <i class="fas fa-times closeModal"></i> 
             </div>
             <form id="contactForm">
-                <div>
+                <div class="formData">
                     <label for="firstName">Prénom</label>
                     <input id="firstName" name="firstName" type="text" />
                 </div>
-                <div>
+                <div class="formData">
                     <label for="lastName">Nom</label>
                     <input id="lastName" name="lastName" type="text" />
                 </div>
-                <div>
+                <div class="formData">
                     <label for"userEmail">Email</label>
                     <input id="userEmail" name="userEmail"  />
                 </div>
-                <div>
+                <div class="formData">
                     <label for="messageContent">Votre message</label>
                     <textarea  name="messageContent" id="messageContent" cols="30" rows="10"></textarea>
                 </div>
