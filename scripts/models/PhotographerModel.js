@@ -40,7 +40,7 @@ export class PhotographerModel {
             <p class="tagline">${this.tagline}</p>
         </div>
         <button class="contact_button">Contactez-moi</button>
-        <div class="photographer_section__img">
+        <div class="photographer_section__link">
             <img src="./assets/photographers/${this.portrait}" alt="${this.name}"/>
         </div>
         `;
@@ -53,16 +53,15 @@ export class PhotographerModel {
 
     createCard() {
 
-        const $wrapper = document.createElement('a');
+        const $wrapper = document.createElement('div');
         $wrapper.classList.add('photographer__article');
-        $wrapper.setAttribute('href', `./photographer.html?id=${this.id}`)
 
         const card = `
-            <div class="photographer_section__img">
-                <img src="./assets/photographers/${this.portrait}" alt="${this.name}" />
-            </div>
-            <div class="photographer_section__info">
+            <a class="photographer_section__link" href="./photographer.html?id=${this.id}" role="link" aria-label="Visitez la page de ${this.name}" >
+                <img src="./assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}" />
                 <h2 class="name">${this.name}</h2>
+            </a>
+            <div class="photographer_section__info">
                 <p class="location">${this.city}, ${this.country}</p>
                 <p class="tagline">${this.tagline}</p>
                 <p class="price">${this.price}€/jour</p>
