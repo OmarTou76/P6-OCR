@@ -35,9 +35,9 @@ export class PhotographerModel {
 
         const card = `
         <div class="photographer-header__info">
-            <h2 id="name">${this.name}</h2>
-            <p id="location">${this.city}, ${this.country}</p>
-            <p id="tagline">${this.tagline}</p>
+            <h2 class="name">${this.name}</h2>
+            <p class="location">${this.city}, ${this.country}</p>
+            <p class="tagline">${this.tagline}</p>
         </div>
         <button class="contact_button">Contactez-moi</button>
         <div class="photographer_section__img">
@@ -62,10 +62,10 @@ export class PhotographerModel {
                 <img src="./assets/photographers/${this.portrait}" alt="${this.name}" />
             </div>
             <div class="photographer_section__info">
-                <h2 id="name">${this.name}</h2>
-                <p id="location">${this.city}, ${this.country}</p>
-                <p id="tagline">${this.tagline}</p>
-                <p id="price">${this.price}€/jour</p>
+                <h2 class="name">${this.name}</h2>
+                <p class="location">${this.city}, ${this.country}</p>
+                <p class="tagline">${this.tagline}</p>
+                <p class="price">${this.price}€/jour</p>
             </div>
         `;
 

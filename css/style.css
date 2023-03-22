@@ -73,20 +73,20 @@ h1 {
     margin: .3rem 0;
 }
 
-.photographer_section__info > #name {
+.photographer_section__info > .name {
     color: #D3573C;
     font-size: 36px;
 }
 
-.photographer_section__info > #location {
+.photographer_section__info > .location {
     color: #D3573C;
     font-size: 13px;
 }
 
-.photographer_section__info > #tagline {    
+.photographer_section__info > .tagline {    
     font-size: 10px;
 }
-.photographer_section__info > #price {    
+.photographer_section__info > .price {    
     font-size: 9px;
     color: #757575;
 }

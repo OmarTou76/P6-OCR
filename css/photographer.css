@@ -169,19 +169,19 @@ main {
 .photographer-header__info > * {
     margin: 0;
 }
-.photographer-header__info > #name {
+.photographer-header__info > .name {
     color: #D3573C;
     font-size: 64px;
     font-weight: 100;
 }
 
-.photographer-header__info > #location {
+.photographer-header__info > .location {
     color: #901C1C;
     font-size: 24px;
     margin: .5rem 0;
 }
 
-.photographer-header__info > #tagline {    
+.photographer-header__info > .tagline {    
     font-size: 18px;
     color: #525252;
 }
