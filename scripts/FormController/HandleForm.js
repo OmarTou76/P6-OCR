@@ -18,7 +18,7 @@ export class HandleForm {
         },
         messageContent: {
             value: null,
-            regex: /^[\sa-zA-Z0-9]{10,}$/,
+            regex: null,
             errorText: "Votre message doit contenir minimum 10 caractères."
         }
     }
@@ -45,6 +45,9 @@ export class HandleForm {
 
             if (canSubmit) {
                 displayValidation()
+                Object.keys(this.fields).forEach(key => {
+                    console.log({ [key]: this.fields[key].value })
+                })
             }
 
         })
@@ -52,7 +55,24 @@ export class HandleForm {
 
     onChange(field) {
         this.form.querySelector(`#${field}`)
-            .addEventListener('change', (e) => this.checkInputByRegex(e, this.fields[field].regex))
+            .addEventListener('change', (e) => {
+                if (this.fields[field].regex) {
+                    this.checkInputByRegex(e, this.fields[field].regex)
+                } else {
+                    this.checkTextarea(e)
+                }
+            })
+    }
+
+    checkTextarea(e) {
+        const { value, id, parentNode: parent } = e.target
+        this.removeAttribute(parent)
+
+        if (value.length >= 10) {
+            this.fields[id].value = value
+        } else {
+            this.addError(id, parent)
+        }
     }
 
     checkInputByRegex(e, reg) {
