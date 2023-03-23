@@ -53,12 +53,13 @@ export class PhotographerModel {
 
     createCard() {
 
-        const $wrapper = document.createElement('div');
+        const $wrapper = document.createElement('article');
         $wrapper.classList.add('photographer__article');
+        $wrapper.setAttribute('role', "region")
 
         const card = `
-            <a class="photographer_section__link" href="./photographer.html?id=${this.id}" role="link" aria-label="Visitez la page de ${this.name}" >
-                <img src="./assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}" />
+            <a class="photographer_section__link" href="./photographer.html?id=${this.id}" role="link" aria-label="Visitez la page de ${this.name}">
+                <img src="./assets/photographers/${this.portrait}" alt=${this.name}" />
                 <h2 class="name">${this.name}</h2>
             </a>
             <div class="photographer_section__info">

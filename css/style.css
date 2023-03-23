@@ -29,10 +29,12 @@ h1 {
     color: #901C1C;
     margin-right: 100px;
 }
+header a {
+    margin-left: 100px;
+}
 
 .logo {
     height: 50px;
-    margin-left: 100px;
 }
 
 .photographer_section {
@@ -56,7 +58,7 @@ h1 {
     justify-content: center;
 }
 .photographer_section__link > .name {
-    margin: 10px 0 5px;
+    margin: 5px 0px 0px;
 }
 
 .photographer_section__link > img {
@@ -79,15 +81,16 @@ h1 {
 }
 
 .photographer_section__info > .location {
-    color: #D3573C;
-    font-size: 13px;
+    color: #901C1C;
+    font-size: 16px;
+    margin-top: 0;
 }
 
 .photographer_section__info > .tagline {    
-    font-size: 10px;
+    font-size: 13px;
 }
 .photographer_section__info > .price {    
-    font-size: 9px;
+    font-size: 12px;
     color: #757575;
 }
 
