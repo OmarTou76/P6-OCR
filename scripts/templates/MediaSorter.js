@@ -1,6 +1,6 @@
 export class MediaSorter {
 
-    constructor(data, lightboModal) {
+    constructor(data, lightboModal, photographerHandler) {
         this._data = data
 
         this.$mainWrapper = document.querySelector('main')
@@ -9,6 +9,7 @@ export class MediaSorter {
         this.$wrapper.classList.add('form__wrapper')
 
         this.lightboModal = lightboModal
+        this.photographerHandler = photographerHandler
 
         this.value = ["Popularité", 'titre', "date"]
     }
@@ -34,20 +35,10 @@ export class MediaSorter {
 
             this.lightboModal.setMedias(sortedData)
 
-            sortedData.forEach(media => {
-                const template = media.createMediaCard()
-                this.$mediasWrapper.appendChild(template)
-            })
+            this.photographerHandler.displayGalery(sortedData, this.$mediasWrapper)
         }
     }
 
-    /* onChangeSorter() {
-        this.$wrapper
-            .querySelector('form')
-            .addEventListener('change', e => {
-                this.sortMedias(e.target.value)
-            })
-    } */
 
     clearMedias() {
         this.$mediasWrapper = document.querySelector('.media__wrapper')

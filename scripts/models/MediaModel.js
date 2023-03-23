@@ -156,7 +156,6 @@ export class VideoModel extends MediaModel {
                     <i id="likes" class="fas fa-heart icon_disliked"></i>
                 </div>    
             </div>
-
         `;
 
         this.$wrapper.innerHTML = card;

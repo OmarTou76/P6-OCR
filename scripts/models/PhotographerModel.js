@@ -1,4 +1,5 @@
 import { ModalForm } from "../templates/ModalForm.js";
+import { MediaSorter } from "../templates/MediaSorter.js";
 
 export class PhotographerModel {
     constructor(data) {
@@ -6,6 +7,7 @@ export class PhotographerModel {
         this.modalForm = new ModalForm(this.name)
         this.$headerWrapper = document.createElement('div')
         this.$headerWrapper.classList.add('photograph-header');
+        this.$headerWrapper.setAttribute("tabindex", "0")
     }
 
     displayLikesAndPrices() {
@@ -25,6 +27,13 @@ export class PhotographerModel {
         return $wrapper
     }
 
+    displayGalery(medias, wrapper) {
+        medias.forEach(media => {
+            const template = media.createMediaCard()
+            wrapper.appendChild(template)
+        })
+    }
+
     openFormModal() {
         this.$headerWrapper.querySelector('.contact_button')
             .addEventListener('click', () => this.modalForm.createModal())
@@ -34,14 +43,16 @@ export class PhotographerModel {
     createHeader() {
 
         const card = `
-        <div class="photographer-header__info">
-            <h2 class="name">${this.name}</h2>
-            <p class="location">${this.city}, ${this.country}</p>
-            <p class="tagline">${this.tagline}</p>
+        <div class="photographer-header__info" tabindex="0">
+            <h1 class="name" tabindex="0">${this.name}</h1>
+            <div tabindex="0">
+                <h2 class="location">${this.city}, ${this.country}</h2>
+                <p class="tagline">${this.tagline}</p>
+            </div>
         </div>
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" tabindex="0">Contactez-moi</button>
         <div class="photographer_section__link">
-            <img src="./assets/photographers/${this.portrait}" alt="${this.name}"/>
+            <img src="./assets/photographers/${this.portrait}" alt="${this.name}" tabindex="0"/>
         </div>
         `;
 

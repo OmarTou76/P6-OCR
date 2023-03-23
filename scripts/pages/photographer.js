@@ -29,14 +29,10 @@ class Photographer {
         document.body.appendChild(aboutPhotographer)
 
         const mediasData = await this.mediasApi.getAllByPhotographerId(this.photographerId, this.lightboxModal)
-        const mediaSorter = new MediaSorter(mediasData, this.lightboxModal)
 
+        photographerData.displayGalery(mediasData, this.$mediaWrapper)
 
-        mediasData.forEach(media => {
-            const template = media.createMediaCard()
-            this.$mediaWrapper.appendChild(template)
-        })
-
+        const mediaSorter = new MediaSorter(mediasData, this.lightboxModal, photographerData)
 
         this.$mainWrapper.appendChild(headerTemplate)
         mediaSorter.render()
