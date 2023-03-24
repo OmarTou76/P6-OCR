@@ -1,5 +1,4 @@
 import { ModalForm } from "../templates/ModalForm.js";
-import { MediaSorter } from "../templates/MediaSorter.js";
 
 export class PhotographerModel {
     constructor(data) {
@@ -7,12 +6,12 @@ export class PhotographerModel {
         this.modalForm = new ModalForm(this.name)
         this.$headerWrapper = document.createElement('div')
         this.$headerWrapper.classList.add('photograph-header');
-        this.$headerWrapper.setAttribute("tabindex", "0")
     }
 
     displayLikesAndPrices() {
         const $wrapper = document.createElement('div')
         $wrapper.classList.add("about__photographer")
+        $wrapper.setAttribute('tabindex', "6")
 
         const card = `
                 <div class="photographer__likes">
@@ -43,16 +42,16 @@ export class PhotographerModel {
     createHeader() {
 
         const card = `
-        <div class="photographer-header__info" tabindex="0">
-            <h1 class="name" tabindex="0">${this.name}</h1>
-            <div tabindex="0">
+        <div class="photographer-header__info">
+            <h1 class="name" tabindex="2">${this.name}</h1>
+            <div tabindex="3">
                 <h2 class="location">${this.city}, ${this.country}</h2>
                 <p class="tagline">${this.tagline}</p>
             </div>
         </div>
-        <button class="contact_button" tabindex="0">Contactez-moi</button>
+        <button class="contact_button" tabindex="4">Contactez-moi</button>
         <div class="photographer_section__link">
-            <img src="./assets/photographers/${this.portrait}" alt="${this.name}" tabindex="0"/>
+            <img src="./assets/photographers/${this.portrait}" alt="${this.name}" tabindex="5"/>
         </div>
         `;
 
@@ -73,10 +72,10 @@ export class PhotographerModel {
                 <img src="./assets/photographers/${this.portrait}" alt=${this.name}" />
                 <h2 class="name">${this.name}</h2>
             </a>
-            <div class="photographer_section__info">
+            <div class="photographer_section__info" tabindex="0">
                 <p class="location">${this.city}, ${this.country}</p>
                 <p class="tagline">${this.tagline}</p>
-                <p class="price">${this.price}€/jour</p>
+                <p class="price" aria-label="${this.price}€ par jour">${this.price}€/jour</p>
             </div>
         `;
 
