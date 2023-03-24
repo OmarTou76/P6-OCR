@@ -16,22 +16,31 @@ export class MediaModel {
 
     handleLikesButton() {
 
-        const context = this
+        this.$wrapper.querySelector('#likes')
+            .addEventListener('click', this.updateLike.bind(this))
 
         this.$wrapper.querySelector('#likes')
-            .addEventListener('click', function () {
-
-                if (this.classList.contains('icon_liked')) {
-                    context.onDislike(this)
-                } else {
-                    context.onLike(this)
+            .addEventListener('keyup', (e) => {
+                if (e.key === "Enter") {
+                    this.updateLike(e)
                 }
-
-                const likesCount = context.$wrapper.querySelector('#likes_count')
-                likesCount.innerHTML = context._data.likes
-
-                context.likesCounter.update()
             })
+
+    }
+
+    updateLike(e) {
+        const { target: element } = e
+
+        if (element.classList.contains('icon_liked')) {
+            this.onDislike(element)
+        } else {
+            this.onLike(element)
+        }
+
+        const likesCount = this.$wrapper.querySelector('#likes_count')
+        likesCount.innerHTML = this._data.likes
+
+        this.likesCounter.update()
 
     }
 
@@ -47,6 +56,35 @@ export class MediaModel {
         element.classList.add('icon_disliked')
 
         this._data.likes--
+    }
+
+    displayLightbox() {
+        const context = this
+
+        this.$wrapper.querySelector('.media__img')
+            .addEventListener('click', () => {
+                context.lightboxModal.render(context.id)
+            })
+        this.$wrapper.querySelector('.media__img')
+            .addEventListener('keyup', (e) => {
+                if (e.key === "Enter") {
+                    context.lightboxModal.render(context.id)
+                }
+            })
+    }
+
+    get mediaInfoTemplate() {
+        return `
+            <div class="media__info">
+                <div id="title" tabindex="0">
+                    ${this.title}
+                </div>
+                <div class="media__likes">
+                    <span id="likes_count">${this.likes}</span>
+                    <i id="likes" class="fas fa-heart icon_disliked" tabindex="0" aria-label="J'aime"></i>
+                </div>    
+            </div>
+        `
     }
 
     get title() {
@@ -82,32 +120,16 @@ export class ImageModel extends MediaModel {
         this.lightboxModal = lightboxModal
     }
 
-    displayLightbox() {
-        const context = this
-
-        this.$wrapper.querySelector('.media__img')
-            .addEventListener('click', () => {
-                context.lightboxModal.render(context.id)
-            })
-    }
 
     createMediaCard() {
         this.$wrapper = document.createElement('div');
         this.$wrapper.classList.add('media__article');
 
         const card = `
-            <div class="media__img">
+            <div class="media__img" aria-label="Ouvrir la photo, Titre: ${this.title}" tabindex="0">
                 <img src="./assets/medias/${this.photographerId}/${this.image}" alt="${this.title}" />
             </div>
-            <div class="media__info">
-                <div id="title">
-                    ${this.title}
-                </div>
-                <div class="media__likes">
-                    <span id="likes_count">${this.likes}</span>
-                    <i id="likes" class="fas fa-heart icon_disliked"></i>
-                </div>    
-            </div>
+            ${this.mediaInfoTemplate}
         `;
 
         this.$wrapper.innerHTML = card;
@@ -129,33 +151,16 @@ export class VideoModel extends MediaModel {
         this.lightboxModal = lightboxModal
     }
 
-    displayLightbox() {
-        const context = this
-
-        this.$wrapper.querySelector('.media__img')
-            .addEventListener('click', () => {
-                context.lightboxModal.render(context.id)
-            })
-    }
-
     createMediaCard() {
         this.$wrapper = document.createElement('div');
         this.$wrapper.classList.add('media__article');
 
         const card = `
-            <div class="media__img">
+            <div class="media__img" tabindex="0" aria-label="Lire la video, Titre: ${this.title}">
                 <video src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.title}" /></video>
                 <i class="fas fa-play player-icon"></i>
             </div>
-            <div class="media__info">
-                <div id="title">
-                    ${this.title}
-                </div>
-                <div class="media__likes">
-                    <span id="likes_count">${this.likes}</span>
-                    <i id="likes" class="fas fa-heart icon_disliked"></i>
-                </div>    
-            </div>
+            ${this.mediaInfoTemplate}
         `;
 
         this.$wrapper.innerHTML = card;
