@@ -6,6 +6,15 @@ main {
     margin: 0 100px;
     position: relative;
 }
+button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	/* outline: inherit; */
+}
 
 .contact_modal {
     position: fixed;
@@ -169,25 +178,26 @@ main {
 .photographer-header__info > * {
     margin: 0;
 }
-.photographer-header__info > .name {
+.photographer-header__info .name {
     color: #D3573C;
     font-size: 64px;
     font-weight: 100;
 }
 
-.photographer-header__info > .location {
+.photographer-header__info .location {
     color: #901C1C;
     font-size: 24px;
     margin: .5rem 0;
 }
 
-.photographer-header__info > .tagline {    
+.photographer-header__info .tagline {    
     font-size: 18px;
     color: #525252;
 }
 
 .sorter__wrapper {
     display: flex;
+    align-items: center;
     gap: 25px;
     font-size: 18px;
     margin-top: 10px;
@@ -213,6 +223,9 @@ main {
     cursor: pointer;
     padding: 1em;
     transition: background-color 0.3s;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .sorter__dropdown .open-icon {
@@ -250,9 +263,11 @@ main {
     background: #901C1C;
     transition: 0.3s;
 }
-/* .menu li:hover {
-    background: #c92929;
-} */
+.sorter__dropdown .menu button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
 
 .sorter__dropdown .menu-open {
     display: block;

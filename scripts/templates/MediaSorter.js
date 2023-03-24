@@ -11,22 +11,21 @@ export class MediaSorter {
         this.lightboModal = lightboModal
         this.photographerHandler = photographerHandler
 
-        this.value = ["Popularité", 'titre', "date"]
     }
 
-    sortMedias(order) {
-        const orderBy = order.toLowerCase()
+    sortMedias(orderBy) {
+
         this.clearMedias()
 
         let sortedData = []
 
         if (orderBy !== "") {
 
-            if (orderBy === "popularité") {
+            if (orderBy === "POPULARITY") {
 
                 sortedData = [...this._data].sort((a, b) => b.likes - a.likes)
 
-            } else if (orderBy === "titre") {
+            } else if (orderBy === "TITLE") {
 
                 sortedData = [...this._data].sort((a, b) => a.title.toUpperCase().charCodeAt(0) - b.title.toUpperCase().charCodeAt(0))
             } else {
@@ -51,7 +50,7 @@ export class MediaSorter {
         const select = dropdown.querySelector('.select')
         const iconOpen = dropdown.querySelector('.open-icon')
         const menu = dropdown.querySelector('.menu')
-        const options = dropdown.querySelectorAll('.menu li')
+        const options = dropdown.querySelectorAll('.menu li button')
         const selected = dropdown.querySelector('.selected')
 
         select.addEventListener('click', () => {
@@ -66,9 +65,13 @@ export class MediaSorter {
         options.forEach(option => {
             option.addEventListener('click', () => {
 
-                const previousSelected = selected.innerHTML;
+                const { innerHTML: previousSelected, id: previousSelectedId } = selected;
+
                 selected.innerHTML = option.innerHTML;
+                selected.id = option.id;
+
                 option.innerHTML = previousSelected;
+                option.id = previousSelectedId;
 
                 select.classList.remove('select-clicked')
 
@@ -76,7 +79,7 @@ export class MediaSorter {
 
                 menu.classList.remove('menu-open')
 
-                this.sortMedias(selected.innerHTML)
+                this.sortMedias(selected.id)
             })
         })
 
@@ -85,22 +88,25 @@ export class MediaSorter {
     render() {
         const sorterSelector = `
         <div class="sorter__wrapper">
-            <p>Trier par </p>
-            <div class="sorter__dropdown">
-                <div class="select">
-                    <span class="selected">Date</span>
+            <label for="sortMedias" id="sortMedias" tabindex="0">Trier par </label>
+            <div class="sorter__dropdown" >
+                <button class="select" role="button" aria-haspopup="listbox" aria-labelledby="sortMedias" aria-expanded tabindex="0" aria-label="Ouvre le menu déroulant pour faire son choix de tri">
+                    <span class="selected" aria-selected="true" id="DATE" role="option">Date</span>
                     <i class="fas fa-chevron-left open-icon"></i>
-                </div>
-                <ul class="menu">
-                    <li>Popularité</li>
-                    <li>Titre</li>
+                </button>
+                <ul class="menu"  aria-labelledby="sortMedias">
+                    <li>
+                        <button  tabindex="0" id="POPULARITY" role="option">Popularité</button>
+                    </li>
+                    <li>
+                        <button  tabindex="0" id="TITLE" role="option">Titre</button>
+                    </li>
                 </ul>
             </div>
         </div>
         `
         this.$wrapper.innerHTML = sorterSelector
         this.$mainWrapper.appendChild(this.$wrapper)
-        //this.onChangeSorter()
         this.handleSelectorStyle()
     }
 }
