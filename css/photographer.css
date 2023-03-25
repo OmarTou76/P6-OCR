@@ -416,7 +416,7 @@ button {
     border-radius: 5px;
 }
 
-.arrow {
+.arrow_next {
     position: absolute;
     top: 50%;
     right: 100px;
@@ -425,6 +425,9 @@ button {
 }
 
 .arrow_back {
+    position: absolute;
+    top: 50%;
+    font-size: 50px;
     left: 100px;
     cursor: pointer;
 }

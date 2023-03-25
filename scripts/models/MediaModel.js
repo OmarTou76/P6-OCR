@@ -65,6 +65,7 @@ export class MediaModel {
             .addEventListener('click', () => {
                 context.lightboxModal.render(context.id)
             })
+
         this.$wrapper.querySelector('.media__img')
             .addEventListener('keyup', (e) => {
                 if (e.key === "Enter") {
