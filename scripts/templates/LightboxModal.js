@@ -103,19 +103,17 @@ export default class LightboxModal {
         this.$wrapper.setAttribute('aria-hidden', "false")
         this.$wrapper.setAttribute('role', "dialog")
 
-
-
         const content = `
-        <div class="player__wrapper" tabindex="0">
+        <div class="player__wrapper" tabindex="0" aria-label="Vue rapprochée des médias">
             <div class="player__wrapper__media"  tabindex="0">
                 ${this.medias[this.currentMedia].image ?
                 `<img src="./assets/medias/${this.medias[this.currentMedia].photographerId}/${this.medias[this.currentMedia].image}" alt="${this.medias[this.currentMedia].title}" class="media__full" />` :
                 `<video controls autoplay src="./assets/medias/${this.medias[this.currentMedia].photographerId}/${this.medias[this.currentMedia].video}" alt="${this.medias[this.currentMedia].title}" class="media__full"></video>`}
                 <p tabindex="0">${this.medias[this.currentMedia].title}</p>
             </div>
-            <i class="fas fa-chevron-left arrow_back" tabindex="0" aria-hidden="false"></i>
-            <i class="fas fa-chevron-right arrow_next" tabindex="0" aria-hidden="false"></i>
-            <i class="fas fa-times close_btn" tabindex="0" aria-hidden="false"></i> 
+            <i class="fas fa-chevron-left arrow_back" tabindex="0" aria-label="Media précédent"></i>
+            <i class="fas fa-chevron-right arrow_next" tabindex="0" aria-label="Media suivant"></i>
+            <i class="fas fa-times close_btn" tabindex="0" aria-label="Fermer la modal de vue rapprochée"></i> 
         </div>`
 
         const { body } = document

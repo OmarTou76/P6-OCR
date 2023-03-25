@@ -12,10 +12,18 @@ export class ModalForm {
     }
 
     closeModal() {
+
         this.$modal.querySelector('.closeModal')
             .addEventListener('click', () => {
                 this.$wrapper.remove()
             })
+
+        this.$wrapper.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                this.$wrapper.remove()
+            }
+        })
+
     }
 
     onSubmit() {
@@ -34,37 +42,61 @@ export class ModalForm {
         this.closeModal()
     }
 
+    onMove() {
+        this.$wrapper.addEventListener('keydown', (e) => {
+
+            const { value } = document.activeElement.classList
+
+            if (value === "modal" && e.shiftKey && e.key === "Tab") {
+                e.preventDefault()
+                this.$wrapper.querySelector('.closeModal').focus()
+            }
+        })
+    }
+
     createModal() {
         const modal = `
             <div class="modal__header">
-                <h2>Contactez-moi</h2>
-                <h3>${this.name}</h3>
-                <i class="fas fa-times closeModal"></i> 
+                <h1 tabindex="0">
+                    Contactez-moi
+                    <br>
+                    ${this.name}
+                </h1>
             </div>
             <form id="contactForm">
                 <div class="formData">
-                    <label for="firstName">Prénom</label>
-                    <input id="firstName" name="firstName" type="text" />
+                    <label for="firstName" tabindex="0">Prénom</label>
+                    <input id="firstName" tabindex="0" name="firstName" type="text" />
                 </div>
                 <div class="formData">
-                    <label for="lastName">Nom</label>
-                    <input id="lastName" name="lastName" type="text" />
+                    <label for="lastName" tabindex="0">Nom</label>
+                    <input id="lastName" tabindex="0" name="lastName" type="text" />
                 </div>
                 <div class="formData">
-                    <label for"userEmail">Email</label>
-                    <input id="userEmail" name="userEmail"  />
+                    <label tabindex="0" for"userEmail">Email</label>
+                    <input tabindex="0" id="userEmail" name="userEmail"  />
                 </div>
                 <div class="formData">
-                    <label for="messageContent">Votre message</label>
-                    <textarea  name="messageContent" id="messageContent" cols="30" rows="10"></textarea>
+                    <label tabindex="0" for="messageContent">Votre message</label>
+                    <textarea tabindex="0" name="messageContent" id="messageContent" cols="30" rows="10"></textarea>
                 </div>
                 <button type="submit" class="contact_button">Envoyer</button>
             </form>
+            <i class="fas fa-times closeModal" tabindex="0"></i> 
         `
+        this.$wrapper.setAttribute('aria-hidden', "false")
+        this.$wrapper.setAttribute('role', "dialog")
+
         this.$modal.innerHTML = modal
+        this.$modal.setAttribute('tabindex', "0")
+
         this.$wrapper.appendChild(this.$modal)
         document.body.appendChild(this.$wrapper)
+
+        this.$wrapper.querySelector('.modal').focus()
+
         this.closeModal()
         this.onSubmit()
+        this.onMove()
     }
 }
