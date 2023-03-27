@@ -46,6 +46,9 @@ export default class LightboxModal {
                 "player__wrapper" && e.shiftKey && e.key === "Tab") {
                 e.preventDefault()
                 this.$wrapper.querySelector(".close_btn").focus()
+            } else if (value.includes('close_btn') && !e.shiftKey && e.key === "Tab") {
+                e.preventDefault()
+                this.$wrapper.querySelector(".player__wrapper").focus()
             }
         })
 
@@ -98,7 +101,7 @@ export default class LightboxModal {
     }
 
     createLightbox() {
-        this.$wrapper = document.createElement('div')
+        this.$wrapper = document.createElement('dialog')
         this.$wrapper.classList.add('lightbox__modal')
         this.$wrapper.setAttribute('aria-hidden', "false")
         this.$wrapper.setAttribute('role', "dialog")

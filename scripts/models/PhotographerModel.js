@@ -18,7 +18,7 @@ export class PhotographerModel {
                     <span class="likes_count"></span>
                     <i class="fas fa-heart icon_liked"></i>
                 </div>
-                <span class="photographer__price">${this.price}€ / jour</span>
+                <span class="photographer__price" aria-label="${this.name} propose un prix de ${this.price} par jour">${this.price}€ / jour</span>
             `;
 
         $wrapper.innerHTML = card
@@ -51,7 +51,7 @@ export class PhotographerModel {
         </div>
         <button class="contact_button" tabindex="4">Contactez-moi</button>
         <div class="photographer_section__link">
-            <img src="./assets/photographers/${this.portrait}" alt="${this.name}" tabindex="5"/>
+            <img src="./assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}" tabindex="5"/>
         </div>
         `;
 

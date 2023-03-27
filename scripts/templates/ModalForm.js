@@ -5,7 +5,7 @@ export class ModalForm {
     constructor(name) {
         this.name = name
 
-        this.$wrapper = document.createElement("div")
+        this.$wrapper = document.createElement("dialog")
         this.$wrapper.classList.add('contact_modal')
         this.$modal = document.createElement('div')
         this.$modal.classList.add('modal')
@@ -50,6 +50,9 @@ export class ModalForm {
             if (value === "modal" && e.shiftKey && e.key === "Tab") {
                 e.preventDefault()
                 this.$wrapper.querySelector('.closeModal').focus()
+            } else if (value.includes('closeModal') && e.key === "Tab" && !e.shiftKey) {
+                e.preventDefault()
+                this.$wrapper.querySelector('.modal').focus()
             }
         })
     }
