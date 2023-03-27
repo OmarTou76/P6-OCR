@@ -69,23 +69,23 @@ export class ModalForm {
             <form id="contactForm">
                 <div class="formData">
                     <label for="firstName" tabindex="0">Prénom</label>
-                    <input id="firstName" tabindex="0" name="firstName" type="text" />
+                    <input id="firstName" tabindex="0" name="firstName" type="text" aria-label="Entrez votre prénom." />
                 </div>
                 <div class="formData">
                     <label for="lastName" tabindex="0">Nom</label>
-                    <input id="lastName" tabindex="0" name="lastName" type="text" />
+                    <input id="lastName" tabindex="0" name="lastName" type="text" aria-label="Entrez votre nom." />
                 </div>
                 <div class="formData">
                     <label tabindex="0" for"userEmail">Email</label>
-                    <input tabindex="0" id="userEmail" name="userEmail"  />
+                    <input tabindex="0" id="userEmail" name="userEmail" aria-label="Entrez votre adresse email." />
                 </div>
                 <div class="formData">
                     <label tabindex="0" for="messageContent">Votre message</label>
-                    <textarea tabindex="0" name="messageContent" id="messageContent" cols="30" rows="10"></textarea>
+                    <textarea tabindex="0" name="messageContent" id="messageContent" cols="30" rows="10" aria-label="Entrez le message a destination de ${this.name}."></textarea>
                 </div>
-                <button type="submit" class="contact_button">Envoyer</button>
+                <button type="submit" class="contact_button" >Envoyer</button>
             </form>
-            <i class="fas fa-times closeModal" tabindex="0"></i> 
+            <i class="fas fa-times closeModal" aria-label="Fermer la modale" tabindex="0"></i> 
         `
         this.$wrapper.setAttribute('aria-hidden', "false")
         this.$wrapper.setAttribute('role', "dialog")
