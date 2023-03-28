@@ -23,14 +23,11 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    margin: 0 11% 0 12%;
 }
 
 h1 {
     color: #901C1C;
-    margin-right: 100px;
-}
-header a {
-    margin-left: 100px;
 }
 
 .logo {
@@ -42,6 +39,7 @@ header a {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+    align-items: baseline;
 }
 
 .photographer__article{
@@ -78,6 +76,7 @@ header a {
 .photographer_section__link > .name {
     color: #D3573C;
     font-size: 36px;
+    text-align: center;
 }
 
 .photographer_section__info > .location {
@@ -94,10 +93,37 @@ header a {
     color: #757575;
 }
 
+@media screen and (max-width: 1100px) {
+    header {
+        margin: 0 6% 0 8%;
+    }
+    main {
+        margin: 0 40px;
+    }
+}
+@media screen and (max-width: 900px) {
+    main {
+        margin: 0;
+    }
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
 @media screen and (max-width: 700px) {
+    header {
+        flex-direction: column;
+        height: auto;
+    }
+    header * {
+        margin: 10px 0;
+    }
+    header a {
+        margin-left: 0;
+    }
     .photographer_section {
         grid-template-columns: 1fr;
-        gap: 70px;
-        margin-top: 0px;
+        margin-top: 50px;
     }
 }

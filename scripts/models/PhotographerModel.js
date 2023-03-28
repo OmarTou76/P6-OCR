@@ -68,7 +68,7 @@ export class PhotographerModel {
         $wrapper.setAttribute('role', "region")
 
         const card = `
-            <a class="photographer_section__link" href="./photographer.html?id=${this.id}" role="link" aria-label="Visitez la page de ${this.name}" >
+            <a class="photographer_section__link" href="./photographer.html?id=${this.id}" role="link" aria-label="Visitez la page de ${this.name}">
                 <img src="./assets/photographers/${this.portrait}" alt=${this.name}" />
                 <h2 class="name">${this.name}</h2>
             </a>
