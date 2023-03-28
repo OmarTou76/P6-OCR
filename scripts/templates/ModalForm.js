@@ -18,6 +18,13 @@ export class ModalForm {
                 this.$wrapper.remove()
             })
 
+        this.$modal.querySelector('.closeModal')
+            .addEventListener('keydown', (e) => {
+                if (e.key === "Enter") {
+                    this.$wrapper.remove()
+                }
+            })
+
         this.$wrapper.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 this.$wrapper.remove()
@@ -32,14 +39,13 @@ export class ModalForm {
 
     displayValidation() {
         this.$modal.innerHTML = `
-            <div class="modal__header">
-                <i class="fas fa-times closeModal"></i> 
-            </div>
             <div class="modal__validation">
                 <p>Votre message à bien été envoyé a ${this.name}.</p>
             </div>
+            <i class="fas fa-times closeModal" aria-label="Fermer la modale" tabindex="0"></i> 
         `
         this.closeModal()
+        this.onMove()
     }
 
     onMove() {

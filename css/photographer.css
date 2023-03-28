@@ -49,7 +49,7 @@ header {
 }
 
 .contact_button:hover {
-    background-color: #901c1cd0;
+    background: #720707;
 }
 
 .modal {
@@ -242,6 +242,10 @@ header {
     border: none;
 }
 
+.sorter__dropdown .select:hover {
+    background: #720707;
+}
+
 .sorter__dropdown .open-icon {
     transform: rotate(270deg);
     transition: 0.2s;
@@ -254,14 +258,13 @@ header {
 
 .sorter__dropdown .menu {
     list-style: none;
-    padding: 0.2em .6em;
-    background: #901C1C;
-    background: #901C1C;
+    padding: 0;
+    overflow: hidden;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #fff;
     position: absolute;
-    top: 1.7rem;
+    top: 2.5rem;
     left: 0; 
     width: 100%;
     opacity: 0;
@@ -270,17 +273,22 @@ header {
     z-index: 1;
 }
 .sorter__dropdown .menu li {
-    padding: 0.5em 0.3em;
-    margin: 0.5em 0;
+    padding: 0 0.6em;
     cursor: pointer;
-    border-top: 1px solid white;
-    background: #901C1C;
+    background-color: #901C1C;
     transition: 0.3s;
 }
+.sorter__dropdown .menu  li:hover{
+    background: #720707;
+}
 .sorter__dropdown .menu button {
+    border-top: 1px solid white;
+    padding: 0.8em 0;
     width: 100%;
+    background-color: #901c1c13;
     height: 100%;
     text-align: left;
+    background-color: transparent;
 }
 
 .sorter__dropdown .menu-open {
@@ -297,7 +305,6 @@ header {
 }
 
 .media__article{
-    /* justify-self: center; */
     display: flex;
     flex-direction: column;
     gap: 5px;
