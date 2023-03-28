@@ -11,6 +11,7 @@ export class MediaModel {
 
     constructor(data) {
         this._data = data
+        this._data.isLiked = false
     }
 
 
@@ -31,7 +32,7 @@ export class MediaModel {
     updateLike(e) {
         const { target: element } = e
 
-        if (element.classList.contains('icon_liked')) {
+        if (this._data.isLiked) {
             this.onDislike(element)
         } else {
             this.onLike(element)
@@ -47,14 +48,14 @@ export class MediaModel {
     onLike(element) {
         element.classList.remove('icon_disliked')
         element.classList.add('icon_liked')
-
+        this._data.isLiked = true
         this._data.likes++
     }
 
     onDislike(element) {
         element.classList.remove('icon_liked')
         element.classList.add('icon_disliked')
-
+        this._data.isLiked = false
         this._data.likes--
     }
 
@@ -82,7 +83,7 @@ export class MediaModel {
                 </div>
                 <div class="media__likes">
                     <span id="likes_count">${this.likes}</span>
-                    <i id="likes" class="fas fa-heart icon_disliked" tabindex="0" aria-label="J'aime"></i>
+                    <i id="likes" class="fas fa-heart ${this._data.isLiked ? "'icon_liked'" : "icon_disliked"}" tabindex="0" aria-label="J'aime"></i>
                 </div>    
             </div>
         `
@@ -136,7 +137,6 @@ export class ImageModel extends MediaModel {
         this.$wrapper.innerHTML = card;
         this.handleLikesButton()
         this.displayLightbox()
-
         return this.$wrapper;
     }
 
