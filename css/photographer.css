@@ -16,7 +16,6 @@ button {
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
-	/* outline: inherit; */
 }
 header {
     margin: 0;
@@ -48,7 +47,7 @@ header {
     transition: 0.3s;
 }
 
-.contact_button:hover {
+.contact_button:hover, .contact_button:focus {
     background: #720707;
 }
 
@@ -85,7 +84,7 @@ header {
     color: #fff;
     transition: 0.3s;
 }
-.closeModal:hover {
+.closeModal:hover, .closeModal:focus {
     color: #901C1C;
 }
 
@@ -242,7 +241,7 @@ header {
     border: none;
 }
 
-.sorter__dropdown .select:hover {
+.sorter__dropdown .select:hover, .sorter__dropdown .select:focus {
     background: #720707;
 }
 
@@ -278,7 +277,7 @@ header {
     background-color: #901C1C;
     transition: 0.3s;
 }
-.sorter__dropdown .menu  li:hover{
+.sorter__dropdown .menu li:hover, .sorter__dropdown .menu button:focus {
     background: #720707;
 }
 .sorter__dropdown .menu button {
@@ -340,11 +339,7 @@ header {
     transition: opacity 300ms;
 }
 
-.media__img:hover .player-icon{
-    opacity: 1;
-}
-
-.media__img:focus .player-icon{
+.media__img:hover .player-icon, .media__img:focus .player-icon {
     opacity: 1;
 }
 
@@ -379,7 +374,7 @@ header {
     cursor: pointer;
 }
 
-.about__photographer{
+.about__photographer {
     position: sticky;
     font-size: 24px;
     bottom: -10px;
@@ -395,7 +390,7 @@ header {
     justify-content: space-around;
 }
 
-.lightbox__modal{
+.lightbox__modal {
     position: fixed;
     height: 100%;
     width: 100%;
