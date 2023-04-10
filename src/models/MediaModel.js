@@ -48,6 +48,7 @@ export class MediaModel {
     onLike(element) {
         element.classList.remove('icon_disliked')
         element.classList.add('icon_liked')
+        element.setAttribute('aria-label', "Je n'aime plus ?")
         this._data.isLiked = true
         this._data.likes++
     }
@@ -55,6 +56,7 @@ export class MediaModel {
     onDislike(element) {
         element.classList.remove('icon_liked')
         element.classList.add('icon_disliked')
+        element.setAttribute('aria-label', "J'aime ?")
         this._data.isLiked = false
         this._data.likes--
     }
@@ -83,7 +85,7 @@ export class MediaModel {
                 </div>
                 <div class="media__likes">
                     <span id="likes_count">${this.likes}</span>
-                    <i id="likes" class="fas fa-heart ${this._data.isLiked ? "'icon_liked'" : "icon_disliked"}" tabindex="0" aria-label="J'aime"></i>
+                    <i id="likes" role='button' class="fas fa-heart ${this._data.isLiked ? "'icon_liked'" : "icon_disliked"}" tabindex="0" aria-label="J'aime ?"></i>
                 </div>    
             </div>
         `
@@ -157,7 +159,7 @@ export class VideoModel extends MediaModel {
         this.$wrapper.classList.add('media__article');
 
         const card = `
-            <div class="media__img" tabindex="0" aria-label="Lire la video, Titre: ${this.title}">
+            <div class="media__img" tabindex="0" aria-label="Lire la vidéo, Titre: ${this.title}">
                 <video src="./assets/medias/${this.photographerId}/${this.video}" alt="${this.title}" /></video>
                 <i class="fas fa-play player-icon"></i>
             </div>
