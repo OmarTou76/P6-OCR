@@ -344,6 +344,10 @@ header {
     opacity: 1;
 }
 
+.media__img:focus .player-icon{
+    opacity: 1;
+}
+
 .media__info {
     display: flex;
     justify-content: space-between;
