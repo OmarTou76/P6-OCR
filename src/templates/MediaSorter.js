@@ -60,6 +60,12 @@ export class MediaSorter {
 
             menu.classList.toggle('menu-open')
 
+            if (select.getAttribute('aria-expanded') === "false") {
+                select.setAttribute('aria-expanded', true)
+            } else {
+                select.setAttribute('aria-expanded', false)
+            }
+
         })
 
         options.forEach(option => {
@@ -90,16 +96,16 @@ export class MediaSorter {
         <div class="sorter__wrapper">
             <label for="sortMedias" id="sortMedias" tabindex="0">Trier par </label>
             <div class="sorter__dropdown" >
-                <button class="select" role="button" aria-haspopup="listbox" aria-labelledby="sortMedias" aria-expanded tabindex="0" aria-label="Ouvre le menu déroulant pour faire son choix de tri">
-                    <span class="selected" aria-selected="true" id="DATE" role="option">Date</span>
+                <button class="select" role="button" aria-haspopup="listbox" aria-labelledby="sortMedias" aria-expanded='false' tabindex="0" aria-label="Ouvre le menu déroulant pour faire son choix de tri">
+                    <span class="selected" aria-selected="true" id="DATE" role="menuitem">Date</span>
                     <i class="fas fa-chevron-left open-icon"></i>
                 </button>
-                <ul class="menu"  aria-labelledby="sortMedias">
+                <ul class="menu" role='menu'  aria-labelledby="sortMedias">
                     <li>
-                        <button  tabindex="0" id="POPULARITY" role="option">Popularité</button>
+                        <button  tabindex="0" id="POPULARITY" role="menuitem">Popularité</button>
                     </li>
                     <li>
-                        <button  tabindex="0" id="TITLE" role="option">Titre</button>
+                        <button  tabindex="0" id="TITLE" role="menuitem">Titre</button>
                     </li>
                 </ul>
             </div>
